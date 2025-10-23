@@ -9,6 +9,7 @@ namespace ButtonsExample
     {
         // Serialized Fields
         [SerializeField] private float moveSpeed = 5f;
+        [SerializeField] private float turnSpeed = 1080f;
         
         // Components
         private Rigidbody myRigidbody;
@@ -29,6 +30,21 @@ namespace ButtonsExample
             movement.y = myRigidbody.linearVelocity.y; // reapply the falling speed
             
             myRigidbody.linearVelocity = movement;
+            myRigidbody.angularVelocity = Vector3.zero; // stops random rotation
+
+            // Early return
+            // The code will stop here if this is true
+            // Stops rotating if there is no movement
+            // Magnitude - all the variables inside a vector combined in a single number
+            // Epsilon - a tiny number
+            if (direction.magnitude <= Mathf.Epsilon) return;
+            
+            // We can transition the object's rotation 
+            var currentRotation = myRigidbody.rotation;
+            var targetRotation = Quaternion.LookRotation(direction);
+            var rotation = Quaternion.RotateTowards(currentRotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+            
+            myRigidbody.MoveRotation(rotation);
         }
 
         // Triggered by the PlayerInput component
