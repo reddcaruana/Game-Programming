@@ -11,7 +11,7 @@ namespace ButtonsExample
 
         // The object that we're currently holding
         [SerializeField]
-        private Pickupable objectInHands;
+        private Crate objectInHands;
         
         private void OnInteract(InputValue value)
         {
@@ -41,7 +41,7 @@ namespace ButtonsExample
                 // Try to get the Pickupable script
                 // If it doesn't exist, this loop fails
                 // ! equates to a false
-                if (!result.attachedRigidbody.TryGetComponent<Pickupable>(out var pickupable))
+                if (!result.attachedRigidbody.TryGetComponent<Crate>(out var pickupable))
                     continue;
 
                 // Pick up the object

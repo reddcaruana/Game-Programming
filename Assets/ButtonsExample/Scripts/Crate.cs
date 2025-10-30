@@ -1,3 +1,4 @@
+using ButtonsExample.Contracts;
 using UnityEngine;
 
 namespace ButtonsExample
@@ -6,7 +7,7 @@ namespace ButtonsExample
     /// This script handles the act of picking up and dropping an object.
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
-    public class Pickupable : MonoBehaviour
+    public class Crate : MonoBehaviour, IPhysicsObject
     {
         private Rigidbody myRigidbody;
 

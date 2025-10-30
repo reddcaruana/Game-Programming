@@ -1,3 +1,4 @@
+using ButtonsExample.Contracts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +6,7 @@ namespace ButtonsExample
 {
     // Attribute to automatically attach related scripts
     [RequireComponent(typeof(Rigidbody), typeof(PlayerInput))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IPhysicsObject
     {
         // Serialized Fields
         [SerializeField] private float moveSpeed = 5f;
