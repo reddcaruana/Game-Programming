@@ -9,7 +9,8 @@ namespace ButtonsExample
     {
         // An event that other objects can register to
         // Also called a delegate function
-        public event Action<bool> OnTriggered;
+        // Will send which button was pressed, and if it is pressed
+        public event Action<PushButton, bool> OnTriggered;
         
         [SerializeField] private bool isPressed;
         [SerializeField] private Transform buttonTop;
@@ -30,8 +31,9 @@ namespace ButtonsExample
             isPressed = true;
             
             // Broadcasts the isPressed value to anyone listening
+            // this -> the object that sends the message from the scene
             if (OnTriggered != null)
-                OnTriggered.Invoke(isPressed);
+                OnTriggered.Invoke(this, isPressed);
             
             UpdateVisual();
         }
@@ -49,7 +51,7 @@ namespace ButtonsExample
             isPressed = false;
             
             if (OnTriggered != null)
-                OnTriggered.Invoke(isPressed);
+                OnTriggered.Invoke(this, isPressed);
             
             UpdateVisual();
         }
