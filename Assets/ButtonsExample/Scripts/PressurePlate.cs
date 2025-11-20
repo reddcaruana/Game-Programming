@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ButtonsExample
@@ -8,6 +9,8 @@ namespace ButtonsExample
     /// </summary>
     public class PressurePlate : ButtonBase
     {
+        public event Action<float> OnWeightChanged;
+        
         [Header("Activation Criteria")]
         [SerializeField] private float targetWeight = 10f;
 
@@ -19,6 +22,9 @@ namespace ButtonsExample
             {
                 totalWeight += touchingObject.Weight;
             }
+            
+            if (OnWeightChanged != null)
+                OnWeightChanged.Invoke(totalWeight);
             
             return totalWeight >= targetWeight;
         }
