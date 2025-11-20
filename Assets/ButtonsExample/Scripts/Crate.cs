@@ -10,6 +10,10 @@ namespace ButtonsExample
     public class Crate : MonoBehaviour, IPhysicsObject
     {
         private Rigidbody myRigidbody;
+        
+        /// <inheritdoc />
+        // The property is read only, but we can set it in the inspector
+        [field: SerializeField] public float Weight { get; private set; }
 
         private void Awake()
         {

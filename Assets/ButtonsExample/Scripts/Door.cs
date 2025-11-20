@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ButtonsExample
 {
     public class Door : MonoBehaviour
     {
         [SerializeField] private Transform doorObject;
-        [SerializeField] private PushButton[] buttons;
+        [SerializeField] private ButtonBase[] buttons;
 
         // Key/Value pair similar to PHP
         // We don't have to create this inside a method
-        private Dictionary<PushButton, bool> buttonStates = new();
+        private Dictionary<ButtonBase, bool> buttonStates = new();
         
         // Can be read by all classes, but only I can change the value
         public bool isOpen
@@ -68,7 +69,7 @@ namespace ButtonsExample
         /// </summary>
         /// <param name="button">The button that changed.</param>
         /// <param name="isPressed">The value of that button.</param>
-        private void OnButtonTriggered(PushButton button, bool isPressed)
+        private void OnButtonTriggered(ButtonBase button, bool isPressed)
         {
             Debug.Log($"{button.name} was changed");
             

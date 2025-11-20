@@ -18,6 +18,10 @@ namespace ButtonsExample
         // Runtime Variables
         private Vector3 direction;
 
+        /// <inheritdoc />
+        // The property is read only, but we can set it in the inspector
+        [field: SerializeField] public float Weight { get; private set; }
+        
         // This is where we look up components
         private void Awake()
         {
