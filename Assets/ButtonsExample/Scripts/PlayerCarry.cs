@@ -25,7 +25,7 @@ namespace ButtonsExample
             
             // The origin point
             var origin = source.position;
-            var results = new Collider[4]; // The result of our raycast
+            var results = new Collider[16]; // The result of our raycast
             
             // Will return the number of objects found in space
             var hitCount = Physics.OverlapSphereNonAlloc(origin, radius, results);
